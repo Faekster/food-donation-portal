@@ -7,8 +7,9 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Dashboard from "./pages/Dashboard";
 import CreateDonation from "./pages/CreateDonation";
-import DonationsList from "./pages/DonationsList"; // Add this import
-import DonationDetail from "./pages/DonationDetail"; // Add this import
+import DonationsList from "./pages/DonationsList";
+import DonationDetail from "./pages/DonationDetail";
+import Profile from "./pages/Profile";
 import ProtectedRoute from "./components/routing/ProtectedRoute";
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
               <Route element={<ProtectedRoute />}>
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/donations/:id" element={<DonationDetail />} />
+                <Route path="/profile" element={<Profile />} />{" "}
+                {/* Add this route */}
               </Route>
 
               {/* Donor-specific routes */}
