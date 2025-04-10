@@ -153,7 +153,7 @@ const Register = () => {
                       autoComplete="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md text-gray-900"
                     />
                     {formErrors.name && (
                       <p className="mt-1 text-sm text-red-600">
@@ -178,7 +178,7 @@ const Register = () => {
                       autoComplete="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md text-gray-900"
                     />
                     {formErrors.email && (
                       <p className="mt-1 text-sm text-red-600">
@@ -203,7 +203,7 @@ const Register = () => {
                       autoComplete="new-password"
                       value={formData.password}
                       onChange={handleChange}
-                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md text-gray-900"
                     />
                     {formErrors.password && (
                       <p className="mt-1 text-sm text-red-600">
@@ -228,7 +228,7 @@ const Register = () => {
                       autoComplete="new-password"
                       value={formData.confirmPassword}
                       onChange={handleChange}
-                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md text-gray-900"
                     />
                     {formErrors.confirmPassword && (
                       <p className="mt-1 text-sm text-red-600">
@@ -251,7 +251,7 @@ const Register = () => {
                       name="role"
                       value={formData.role}
                       onChange={handleChange}
-                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md text-gray-900"
                     >
                       <option value="donor">
                         Food Donor (Business or Individual)
@@ -266,7 +266,7 @@ const Register = () => {
                     htmlFor="organization"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Organization Name (Optional)
+                    Organisation Name (Optional)
                   </label>
                   <div className="mt-1">
                     <input
@@ -275,7 +275,7 @@ const Register = () => {
                       id="organization"
                       value={formData.organization}
                       onChange={handleChange}
-                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md text-gray-900"
                     />
                   </div>
                 </div>
@@ -302,7 +302,7 @@ const Register = () => {
                       id="address.street"
                       value={formData.address.street}
                       onChange={handleChange}
-                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md text-gray-900"
                     />
                   </div>
                 </div>
@@ -321,7 +321,7 @@ const Register = () => {
                       id="address.city"
                       value={formData.address.city}
                       onChange={handleChange}
-                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md text-gray-900"
                     />
                   </div>
                 </div>
@@ -340,7 +340,7 @@ const Register = () => {
                       id="address.postcode"
                       value={formData.address.postcode}
                       onChange={handleChange}
-                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md text-gray-900"
                     />
                   </div>
                 </div>
@@ -359,7 +359,7 @@ const Register = () => {
                       id="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md text-gray-900"
                     />
                   </div>
                 </div>
