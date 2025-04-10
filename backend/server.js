@@ -6,6 +6,7 @@ import connectDB from "./db.js";
 
 // Import routes
 import authRoutes from "./routes/auth.js";
+import donationRoutes from "./routes/donations.js";
 
 // Load environment variables
 dotenv.config();
@@ -23,6 +24,7 @@ app.use(express.json()); // Parse JSON request bodies
 
 // Use routes
 app.use("/api/auth", authRoutes);
+app.use("/api/donations", donationRoutes);
 
 // Basic route for testing
 app.get("/", (req, res) => {
