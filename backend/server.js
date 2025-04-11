@@ -7,7 +7,8 @@ import connectDB from "./db.js";
 // Import routes
 import authRoutes from "./routes/auth.js";
 import donationRoutes from "./routes/donations.js";
-import userRoutes from "./routes/users.js"; // Add this import
+import userRoutes from "./routes/users.js";
+import notificationRoutes from "./routes/notifications.js";
 
 // Load environment variables
 dotenv.config();
@@ -26,7 +27,8 @@ app.use(express.json()); // Parse JSON request bodies
 // Use routes
 app.use("/api/auth", authRoutes);
 app.use("/api/donations", donationRoutes);
-app.use("/api/users", userRoutes); // Add this line
+app.use("/api/users", userRoutes);
+app.use("/api/notifications", notificationRoutes);
 
 // Basic route for testing
 app.get("/", (req, res) => {

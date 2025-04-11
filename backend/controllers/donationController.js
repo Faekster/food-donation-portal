@@ -1,5 +1,6 @@
 import Donation from "../models/Donation.js";
 import User from "../models/User.js";
+import { createNotification } from "./notificationController.js";
 
 // Create a new donation
 export const createDonation = async (req, res) => {
@@ -16,6 +17,23 @@ export const createDonation = async (req, res) => {
     });
 
     await donation.save();
+
+    // Create notifications for recipients
+    try {
+      const recipients = await User.find({ role: "recipient" });
+      for (const recipient of recipients) {
+        await createNotification(
+          recipient._id,
+          "donation_created",
+          "New Donation Available",
+          `A new donation of ${foodItems.length} items is available in ${pickupAddress.city}.`,
+          donation._id.toString()
+        );
+      }
+    } catch (notifyError) {
+      console.error("Error creating notifications:", notifyError);
+      // Continue with response even if notifications fail
+    }
 
     res.status(201).json({
       message: "Donation created successfully",
@@ -170,6 +188,74 @@ export const updateDonationStatus = async (req, res) => {
     donation.status = status;
     await donation.save();
 
+    // Create notifications based on status change
+    try {
+      if (status === "claimed") {
+        // Notify donor that their donation was claimed
+        await createNotification(
+          donation.donor.toString(),
+          "donation_claimed",
+          "Donation Claimed",
+          `Your donation has been claimed by ${
+            req.user.name || "a recipient"
+          }.`,
+          donation._id.toString()
+        );
+      } else if (status === "completed") {
+        // Notify both parties
+        if (donation.donor.toString() !== req.user.userId) {
+          // Notify donor
+          await createNotification(
+            donation.donor.toString(),
+            "donation_completed",
+            "Donation Completed",
+            `Your donation has been marked as completed.`,
+            donation._id.toString()
+          );
+        }
+
+        if (
+          donation.recipient &&
+          donation.recipient.toString() !== req.user.userId
+        ) {
+          // Notify recipient
+          await createNotification(
+            donation.recipient.toString(),
+            "donation_completed",
+            "Donation Completed",
+            `A donation you claimed has been marked as completed.`,
+            donation._id.toString()
+          );
+        }
+      } else if (status === "cancelled") {
+        // Notify the other party
+        if (donation.status === "claimed" && donation.recipient) {
+          if (donation.donor.toString() === req.user.userId) {
+            // Donor cancelled, notify recipient
+            await createNotification(
+              donation.recipient.toString(),
+              "donation_cancelled",
+              "Donation Cancelled",
+              `A donation you claimed has been cancelled by the donor.`,
+              donation._id.toString()
+            );
+          } else if (donation.recipient.toString() === req.user.userId) {
+            // Recipient cancelled, notify donor
+            await createNotification(
+              donation.donor.toString(),
+              "donation_cancelled",
+              "Claim Cancelled",
+              `A claim on your donation has been cancelled by the recipient.`,
+              donation._id.toString()
+            );
+          }
+        }
+      }
+    } catch (notifyError) {
+      console.error("Error creating status change notifications:", notifyError);
+      // Continue with response even if notifications fail
+    }
+
     res.json({
       message: `Donation ${status} successfully`,
       donation,
@@ -203,7 +289,7 @@ export const deleteDonation = async (req, res) => {
         .json({ message: "Cannot delete a donation that is not available" });
     }
 
-    await donation.remove();
+    await Donation.findByIdAndDelete(req.params.id);
 
     res.json({ message: "Donation deleted successfully" });
   } catch (error) {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import NotificationBell from "../notifications/NotificationBell";
 
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
@@ -56,6 +57,12 @@ const Navbar = () => {
                   >
                     Browse Donations
                   </Link>
+                )}
+
+                {isAuthenticated && (
+                  <div className="relative">
+                    <NotificationBell />
+                  </div>
                 )}
 
                 <div className="relative ml-3">
