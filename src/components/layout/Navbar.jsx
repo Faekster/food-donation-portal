@@ -60,6 +60,15 @@ const Navbar = () => {
                 )}
 
                 {isAuthenticated && (
+                  <Link
+                    to="/analytics"
+                    className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-green-600"
+                  >
+                    Analytics
+                  </Link>
+                )}
+
+                {isAuthenticated && (
                   <div className="relative">
                     <NotificationBell />
                   </div>

@@ -12,6 +12,7 @@ import DonationDetail from "./pages/DonationDetail";
 import Profile from "./pages/Profile";
 import ProtectedRoute from "./components/routing/ProtectedRoute";
 import Notifications from "./pages/Notifications";
+import Analytics from "./pages/Analytics";
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
                 <Route path="/donations/:id" element={<DonationDetail />} />
                 <Route path="/profile" element={<Profile />} />{" "}
                 <Route path="/notifications" element={<Notifications />} />
-                {/* Add this route */}
+                <Route path="/analytics" element={<Analytics />} />{" "}
               </Route>
 
               {/* Donor-specific routes */}
